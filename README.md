@@ -19,7 +19,7 @@ Add this package to your `pubspec.yaml`:
 dependencies:
   flutter_extensions:
     git:
-      url: https://github.com/your-repo/flutter_extensions.git
+      url: https://github.com/gsshakil/flutter_useful_extensions
 ```
 
 Then, run:
@@ -33,7 +33,7 @@ dart pub get
 Import the package:
 
 ```dart
-import 'package:flutter_extensions/flutter_extensions.dart';
+import 'package:flutter_extensions/flutter_useful_extensions.dart';
 ```
 
 ### Example Usage
