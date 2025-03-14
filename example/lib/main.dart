@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_useful_extensions/flutter_useful_extensions.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,68 +11,54 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Flutter Useful Extensions Example',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: ExtensionsDemo(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class ExtensionsDemo extends StatelessWidget {
+  const ExtensionsDemo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String text = "hello world";
-    print(text.capitalize()); // Output: Hello world
-
-    DateTime now = DateTime.now();
-    print(now.timeAgo()); // Output: Just now, 1 min ago, etc.
-
-    List<int> numbers = [1, 2, 2, 3, 4, 4];
-    print(numbers.unique()); // Output: [1, 2, 3, 4]
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      appBar: AppBar(title: Text("Flutter Useful Extensions Demo")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("String Extensions:",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("hello world".capitalize()),
+              Text("   spaces removed   ".removeWhitespace()),
+              Text("test@example.com is email: ${"test@example.com".isEmail}"),
+              SizedBox(height: 16),
+              Text("DateTime Extensions:",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("Today is today: ${DateTime.now().isToday}"),
+              Text(
+                  "Yesterday was yesterday: ${DateTime.now().subtract(Duration(days: 1)).isYesterday}"),
+              SizedBox(height: 16),
+              Text("List Extensions:",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("Unique List: ${[1, 2, 2, 3, 4, 4].unique()}"),
+              SizedBox(height: 16),
+              Text("BuildContext Extensions:",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("Screen Width: ${context.screenWidth}"),
+              Text("Is Dark Mode: ${context.isDarkMode}"),
+              SizedBox(height: 16),
+              Text("Other Extensions:",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("Currency Format: ${1000.5.toCurrency()}"),
+              Text("2 Hours in Seconds: ${2.hours.inSeconds}"),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
