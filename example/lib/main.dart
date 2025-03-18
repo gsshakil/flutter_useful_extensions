@@ -45,6 +45,7 @@ class ExtensionsDemo extends StatelessWidget {
               Text("Remove Whitespace: ${"  flut ter  ".removeWhitespace()}"),
               Text("Reverse: ${"Flutter".reverse()}"),
               SizedBox(height: 16),
+              
               Text("DateTime Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("Format: ${now.format('yyyy-MM-dd')}"),
@@ -56,20 +57,62 @@ class ExtensionsDemo extends StatelessWidget {
               Text("Is Leap Year: ${now.isLeapYear}"),
               Text("Time Ago: ${now.subtract(Duration(minutes: 3)).timeAgo()}"),
               Text("Copy With (Year): ${now.copyWith(year: 2025)}"),
+              Text("Start Of Day: ${now.startOfDay}"),
+              Text("End Of Day: ${now.endOfDay}"),
+              Text("Minutes From: ${now.minutesFrom(DateTime(2024, 02, 12))}"),
+              Text("Seconds From: ${now.secondsFrom(DateTime(2024, 02, 12))}"),
+              Text("First Day Of Week: ${now.firstDayOfWeek}"),
+              Text("Last Day Of Week: ${now.lastDayOfWeek}"),
+              Text(
+                  "Is Date Before Or Equal Today Concise: ${now.isDateBeforeOrEqualTodayConcise}"),
               SizedBox(height: 16),
+
               Text("List Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("Unique: ${numbers.unique()}"),
               Text("Sorted: ${numbers.sorted()}"),
               Text("Chunks of 2: ${numbers.chunk(2)}"),
+              Text("Is Null Or Empty: ${numbers.isNullOrEmpty}"),
+              Text("Last Or Null: ${numbers.lastOrNull}"),
+              Text("First Or Null: ${numbers.firstOrNull}"),
+              Text("Distinct: ${numbers.distinct()}"),
               SizedBox(height: 16),
+
               Text("BuildContext Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("Screen Size: ${context.screenSize}"),
               Text("Screen Width: ${context.screenWidth}"),
               Text("Screen Height: ${context.screenHeight}"),
               Text("Is Dark Mode: ${context.isDarkMode}"),
+              Text("Status Bar Height: ${context.statusBarHeight}"),
+              Text("Bottom Bar Height: ${context.bottomBarHeight}"),
+              Text("Text Theme: ${context.textTheme}"),
+              Text("Color Scheme: ${context.colorScheme}"),
               SizedBox(height: 16),
+
+
+              Text("Navigation Extensions:",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              ElevatedButton(
+                onPressed: () {
+                  context.push(SecondScreen());
+                },
+                child: Text('Go to Second Screen'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.pushNamed('/third',
+                      arguments: 'Hello via Named Route');
+                },
+                child: Text("Go to Third Screen(Named)"),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    context.pushReplacement(ReplacementScreen());
+                  },
+                  child: Text("Go to Replacement Screen")),
+              SizedBox(height: 16),
+
               Text("Other Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("To Currency: ${1234.56.toCurrency()}"),
@@ -80,6 +123,70 @@ class ExtensionsDemo extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final args = context.arguments;
+    return Scaffold(
+      appBar: AppBar(title: Text('Second Screen')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Second Screen'),
+            Text('Arguments: ${args ?? "No Arguments"}'),
+            ElevatedButton(
+              onPressed: () {
+                context.pop('Result from Second Screen');
+              },
+              child: Text('Pop with Result'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ThirdScreen extends StatelessWidget {
+  const ThirdScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final args = context.arguments;
+    return Scaffold(
+      appBar: AppBar(title: Text("Third Screen")),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Third Screen"),
+          Text('Arguments: ${args ?? "No Arguments"}'),
+          ElevatedButton(
+              onPressed: () {
+                context.pop();
+              },
+              child: Text("Pop")),
+        ],
+      )),
+    );
+  }
+}
+
+class ReplacementScreen extends StatelessWidget {
+  const ReplacementScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Replaced Screen")),
+      body: Center(child: Text("This screen replaced the previous one")),
     );
   }
 }
