@@ -45,7 +45,6 @@ class ExtensionsDemo extends StatelessWidget {
               Text("Remove Whitespace: ${"  flut ter  ".removeWhitespace()}"),
               Text("Reverse: ${"Flutter".reverse()}"),
               SizedBox(height: 16),
-              
               Text("DateTime Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("Format: ${now.format('yyyy-MM-dd')}"),
@@ -66,7 +65,6 @@ class ExtensionsDemo extends StatelessWidget {
               Text(
                   "Is Date Before Or Equal Today Concise: ${now.isDateBeforeOrEqualTodayConcise}"),
               SizedBox(height: 16),
-
               Text("List Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("Unique: ${numbers.unique()}"),
@@ -77,7 +75,6 @@ class ExtensionsDemo extends StatelessWidget {
               Text("First Or Null: ${numbers.firstOrNull}"),
               Text("Distinct: ${numbers.distinct()}"),
               SizedBox(height: 16),
-
               Text("BuildContext Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("Screen Size: ${context.screenSize}"),
@@ -89,8 +86,6 @@ class ExtensionsDemo extends StatelessWidget {
               Text("Text Theme: ${context.textTheme}"),
               Text("Color Scheme: ${context.colorScheme}"),
               SizedBox(height: 16),
-
-
               Text("Navigation Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               ElevatedButton(
@@ -112,7 +107,6 @@ class ExtensionsDemo extends StatelessWidget {
                   },
                   child: Text("Go to Replacement Screen")),
               SizedBox(height: 16),
-
               Text("Other Extensions:",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Text("To Currency: ${1234.56.toCurrency()}"),
