@@ -1,6 +1,6 @@
 name: flutter_useful_extensions
 description: "A collection of powerful Flutter/Dart extensions for Strings, DateTime, Lists, Navigation, and more to enhance productivity."
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/gsshakil/flutter_useful_extensions
 
 environment:
